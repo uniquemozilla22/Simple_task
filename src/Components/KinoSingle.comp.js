@@ -2,9 +2,17 @@ import React from "react";
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
 
-const KinoSingleComp = ({ gameNumber, gameDate, bonus, drawNumbers }) => {
+const KinoSingleComp = ({
+  gameNumber,
+  gameDate,
+  bonus,
+  drawNumbers,
+  click,
+}) => {
   return (
-    <Container>
+    <Container
+      onClick={() => click({ gameNumber, gameDate, bonus, drawNumbers })}
+    >
       <ContentContainer>
         <Text>
           <Title>Game</Title>
@@ -25,12 +33,13 @@ const KinoSingleComp = ({ gameNumber, gameDate, bonus, drawNumbers }) => {
 };
 
 const Container = styled.div`
-  background-color: skyblue;
+  background-color: #02a8f4;
   padding: 1rem;
   border-radius: 5px;
   min-width: 300px;
+  cursor: pointer;
   :hover {
-    background-color: purple;
+    background-color: #375bcd;
     outline: 10px;
   }
 `;
@@ -38,8 +47,7 @@ const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
-  :after {
-  }
+  border-bottom: "1px solid #f8f8f8";
 `;
 const Text = styled.p`
   display: flex;
@@ -54,14 +62,15 @@ const Title = styled.span`
 `;
 
 const NumberContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, auto);
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem 1rem;
 `;
 
 const Number = styled.div`
-  background-color: white;
+  background-color: #f8f8fa;
   width: fit-content;
   border-radius: 50%;
   padding: 0.5rem;
